@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import UserSerializer, GroupSerializer, PersonSerializer
-from django.contrib.auth.models import User, Group, Person
+from django.contrib.auth.models import User, Group
+from .models import Person
 
 
 class UserViewSet(viewsets.ModelViewSet):
