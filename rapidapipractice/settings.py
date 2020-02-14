@@ -25,7 +25,7 @@ SECRET_KEY = ')kz1y!n)d&sulf(7q!7tk8=959x)+s(9fb7^yz4ppp15rkx!7g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gaurav-api-practice.herokuapp.com']
+ALLOWED_HOSTS = ['gaurav-api-practice.herokuapp.com',]
 
 
 # Application definition
