@@ -17,3 +17,6 @@ class GroupViewSet(viewsets.ModelViewSet):
 class PersonViewSet(viewsets.ModelViewSet):
 	queryset = Person.objects.all()
 	serializer_class = PersonSerializer
+
+def TestView(request):
+	return render(request, 'api/home.html', {"data":"data"})
