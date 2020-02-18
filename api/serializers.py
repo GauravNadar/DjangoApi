@@ -15,5 +15,5 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Person
-		fields = ['name', 'gender']
+		fields = ['name', 'gender', 'phone']
 		
