@@ -27,6 +27,6 @@ router.register(r'person', PersonViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api_auth/', include('rest_framework.urls', namespace='rest_framework'))
-    path('test/', TestView, name=test),
+    path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('test/', TestView, name='test'),
 ]
