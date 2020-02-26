@@ -24,7 +24,6 @@ router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'person', PersonViewSet)
 router.register(r'data', PersonDetailViewSet)
-router.register(r'get-token', rest_auth_view.obtain_auth_token)
 
 
 urlpatterns = [
