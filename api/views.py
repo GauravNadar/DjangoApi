@@ -12,17 +12,19 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-class UserViewSet(viewsets.ModelViewSet):
-	# authentication_classes = [SessionAuthentication, BasicAuthentication]
-	# permission_classes = [IsAuthenticated]
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
 
-	# def get(self, request, format=None):
-	# 	content = {
-	# 	'user': unicode(request.user),
-	# 	'auth': unicode(request.auth),
-	# 	}
-	# 	return Response(content)
+class UserViewSet(viewsets.ModelViewSet, APIView):
+	#authentication_classes = [SessionAuthentication, BasicAuthentication]
+	permission_classes = [IsAuthenticated]
 
+	
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
 
@@ -53,3 +55,9 @@ class PersonDetailViewSet(viewsets.ModelViewSet):
 # 	queryset = PersonDetail.objects.all()
 # 	json = serializers.serialize('json', queryset)
 # 	return HttpResponse(json, content_type='application/json')
+
+@csrf_exempt
+@api_view(["GET"])
+def TokenExample(request):
+	data = {'sample_data': 123}
+	return Response(data, status=HTTP_200_OK)
