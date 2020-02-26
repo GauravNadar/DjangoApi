@@ -12,16 +12,16 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-class UserViewSet(viewsets.ModelViewSet, APIView):
-	authentication_classes = [SessionAuthentication, BasicAuthentication]
-	permission_classes = [IsAuthenticated]
+class UserViewSet(viewsets.ModelViewSet):
+	# authentication_classes = [SessionAuthentication, BasicAuthentication]
+	# permission_classes = [IsAuthenticated]
 
-	def get(self, request, format=None):
-		content = {
-		'user': unicode(request.user),
-		'auth': unicode(request.auth),
-		}
-		return Response(content)
+	# def get(self, request, format=None):
+	# 	content = {
+	# 	'user': unicode(request.user),
+	# 	'auth': unicode(request.auth),
+	# 	}
+	# 	return Response(content)
 
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
