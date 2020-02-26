@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet
+from rest_framework.authtoken import views as rest_auth_view
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,4 +33,6 @@ urlpatterns = [
     path('test/', TestView, name='test'),
 
     path('datatable/', DatatableView, name='datatable'),
+
+    path('get-token', rest_auth_view.obtain_auth_token, name='get-token'),
 ]
