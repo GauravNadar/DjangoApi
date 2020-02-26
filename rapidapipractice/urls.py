@@ -34,5 +34,5 @@ urlpatterns = [
 
     path('datatable/', DatatableView, name='datatable'),
 
-    path('get-token', rest_auth_view.obtain_auth_token, name='get-token'),
+    path('get-token/', rest_auth_view.obtain_auth_token, name='get-token'),
 ]
