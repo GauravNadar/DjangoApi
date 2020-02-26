@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Person
+from .models import Person, PersonDetail
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -17,3 +17,14 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
 		model = Person
 		fields = ['name', 'gender', 'phone']
 		
+
+###############################################################################
+
+class PersonDetailSerializer(serializers.ModelSerializer):
+	#id = serializers.IntegerField(read_only=True)
+
+	#person = PersonSerializer()
+
+	class Meta:
+		model = PersonDetail
+		fields = ('person', 'salary', 'profession',)

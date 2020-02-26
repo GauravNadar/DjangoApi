@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView
+from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'person', PersonViewSet)
+router.register(r'data', PersonDetailViewSet)
 
 
 urlpatterns = [
@@ -29,4 +30,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('test/', TestView, name='test'),
+
+    path('datatable/', DatatableView, name='datatable'),
 ]
