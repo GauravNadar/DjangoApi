@@ -19,6 +19,9 @@ from rest_framework import routers
 from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet, TokenExample, SignalViewSet
 from rest_framework.authtoken import views as rest_auth_view
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
@@ -39,3 +42,5 @@ urlpatterns = [
 
     path('token-example/', TokenExample, name='token-example'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
