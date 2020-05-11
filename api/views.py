@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, PersonSerializer, PersonDetailSerializer
+from .serializers import UserSerializer, GroupSerializer, PersonSerializer, PersonDetailSerializer, SignalSerializer
 from django.contrib.auth.models import User, Group
-from .models import Person, PersonDetail
+from .models import Person, PersonDetail, Signal
 
 from django.http import HttpResponse
 from django.core import serializers
@@ -61,3 +61,8 @@ class PersonDetailViewSet(viewsets.ModelViewSet):
 def TokenExample(request):
 	data = {'sample_data': 123}
 	return Response(data, status=HTTP_200_OK)
+
+
+class SignalViewSet(viewsets.ModelViewSet):
+	queryset = Signal.objects.all()
+	serializer_class = SignalSerializer

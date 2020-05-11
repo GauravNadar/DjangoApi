@@ -32,3 +32,15 @@ class PersonDetail(models.Model):
 
 	def __str__(self):
 		return self.person.name
+
+
+class Signal(models.Model):
+	name = models.CharField(max_length=150)
+	image = models.ImageField(upload_to='symbols/')
+	description = models.TextField()
+	type = models.CharField(max_length=50)
+
+
+	def __str__(self):
+		return self.name
+

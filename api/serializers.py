@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Person, PersonDetail
+from .models import Person, PersonDetail, Signal
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -28,3 +28,8 @@ class PersonDetailSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = PersonDetail
 		fields = ('person', 'salary', 'profession',)
+
+class SignalSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Signal
+		fields = ['name', 'image', 'description', 'type'] 

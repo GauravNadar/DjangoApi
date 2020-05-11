@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet, TokenExample
+from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet, TokenExample, SignalViewSet
 from rest_framework.authtoken import views as rest_auth_view
 
 router = routers.DefaultRouter()
@@ -24,6 +24,7 @@ router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'person', PersonViewSet)
 router.register(r'data', PersonDetailViewSet)
+router.register(r'signals', SignalViewSet)
 
 
 urlpatterns = [
