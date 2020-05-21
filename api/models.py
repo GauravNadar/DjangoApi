@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # DESIGNATION_CHOICES = [
 # 		('d','Doctor'),
@@ -43,4 +44,14 @@ class Signal(models.Model):
 
 	def __str__(self):
 		return self.name
+
+
+class TestModel(models.Model):
+	test_name = models.CharField(max_length=150)
+	pic = CloudinaryField('image')
+	pic2 = models.BinaryField(blank=True)
+
+
+	def __str__(self):
+		return self.test_name
 

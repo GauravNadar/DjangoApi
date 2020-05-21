@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'api',
+    'cloudinary',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -160,3 +162,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 import dj_database_url 
 db_from_env = dj_database_url.config(conn_max_age=500) 
 DATABASES['default'].update(db_from_env)
+
+CLOUDINARY_URL = "cloudinary://315267813424234:9YZlGvlILTIO77O635PtQzqVNzY@gauravapi"
+
+import cloudinary
+cloudinary.config( 
+  cloud_name = "gauravapi", 
+  api_key = "315267813424234", 
+  api_secret = "9YZlGvlILTIO77O635PtQzqVNzY" 
+)
