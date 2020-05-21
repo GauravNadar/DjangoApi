@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, PersonSerializer, PersonDetailSerializer, SignalSerializer
+from .serializers import UserSerializer, SignalSerializer
 from django.contrib.auth.models import User, Group
-from .models import Person, PersonDetail, Signal
+from .models import Signal
 
 from django.http import HttpResponse
 from django.core import serializers

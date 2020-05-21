@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Person, Signal
+from .models import Signal
 
 #admin.site.register(Person)
 admin.site.register(Signal)

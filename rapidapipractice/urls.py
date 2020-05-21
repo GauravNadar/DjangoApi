@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import UserViewSet, GroupViewSet, PersonViewSet, TestView, DatatableView, PersonDetailViewSet, TokenExample, SignalViewSet
+from api.views import UserViewSet, SignalViewSet
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
