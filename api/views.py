@@ -29,26 +29,26 @@ class UserViewSet(viewsets.ModelViewSet, APIView):
 	serializer_class = UserSerializer
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-	queryset = Group.objects.all()
-	serializer_class = GroupSerializer
+# class GroupViewSet(viewsets.ModelViewSet):
+# 	queryset = Group.objects.all()
+# 	serializer_class = GroupSerializer
 
-class PersonViewSet(viewsets.ModelViewSet):
-	queryset = Person.objects.all()
-	serializer_class = PersonSerializer
+# class PersonViewSet(viewsets.ModelViewSet):
+# 	queryset = Person.objects.all()
+# 	serializer_class = PersonSerializer
 
-def TestView(request):
-	return render(request, 'api/home.html', {"data":"data"})
+# def TestView(request):
+# 	return render(request, 'api/home.html', {"data":"data"})
 
 
-#####################################################################
+# #####################################################################
 
-def DatatableView(request):
-	return render(request, 'datatable/home.html')
+# def DatatableView(request):
+# 	return render(request, 'datatable/home.html')
 
-class PersonDetailViewSet(viewsets.ModelViewSet):
-	queryset = PersonDetail.objects.all()
-	serializer_class = PersonDetailSerializer
+# class PersonDetailViewSet(viewsets.ModelViewSet):
+# 	queryset = PersonDetail.objects.all()
+# 	serializer_class = PersonDetailSerializer
 
 
 # def DatatableView(request):
@@ -56,11 +56,11 @@ class PersonDetailViewSet(viewsets.ModelViewSet):
 # 	json = serializers.serialize('json', queryset)
 # 	return HttpResponse(json, content_type='application/json')
 
-@csrf_exempt
-@api_view(["GET"])
-def TokenExample(request):
-	data = {'sample_data': 123}
-	return Response(data, status=HTTP_200_OK)
+# @csrf_exempt
+# @api_view(["GET"])
+# def TokenExample(request):
+# 	data = {'sample_data': 123}
+# 	return Response(data, status=HTTP_200_OK)
 
 
 class SignalViewSet(viewsets.ModelViewSet):

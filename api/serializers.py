@@ -7,27 +7,27 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 		model = User
 		fields = ['url', 'username', 'email', 'groups']
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Group
-		fields = ['url', 'name']
+# class GroupSerializer(serializers.HyperlinkedModelSerializer):
+# 	class Meta:
+# 		model = Group
+# 		fields = ['url', 'name']
 
-class PersonSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = Person
-		fields = ['name', 'gender', 'phone']
+# class PersonSerializer(serializers.HyperlinkedModelSerializer):
+# 	class Meta:
+# 		model = Person
+# 		fields = ['name', 'gender', 'phone']
 		
 
-###############################################################################
+# ###############################################################################
 
-class PersonDetailSerializer(serializers.ModelSerializer):
-	#id = serializers.IntegerField(read_only=True)
+# class PersonDetailSerializer(serializers.ModelSerializer):
+# 	#id = serializers.IntegerField(read_only=True)
 
-	#person = PersonSerializer()
+# 	#person = PersonSerializer()
 
-	class Meta:
-		model = PersonDetail
-		fields = ('person', 'salary', 'profession',)
+# 	class Meta:
+# 		model = PersonDetail
+#		fields = ('person', 'salary', 'profession',)
 
 class SignalSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:

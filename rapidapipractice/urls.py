@@ -25,9 +25,9 @@ from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
-router.register(r'person', PersonViewSet)
-router.register(r'data', PersonDetailViewSet)
+#router.register(r'groups', GroupViewSet)
+#router.register(r'person', PersonViewSet)
+#router.register(r'data', PersonDetailViewSet)
 router.register(r'signals', SignalViewSet)
 
 
@@ -35,13 +35,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('test/', TestView, name='test'),
+    #path('test/', TestView, name='test'),
 
-    path('datatable/', DatatableView, name='datatable'),
+    #path('datatable/', DatatableView, name='datatable'),
 
     path('get-token/', rest_auth_view.obtain_auth_token, name='get-token'),
 
-    path('token-example/', TokenExample, name='token-example'),
+    #path('token-example/', TokenExample, name='token-example'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
