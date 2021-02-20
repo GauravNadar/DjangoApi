@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import UserViewSet, SignalViewSet
+from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
@@ -29,6 +29,9 @@ router.register(r'users', UserViewSet)
 #router.register(r'person', PersonViewSet)
 #router.register(r'data', PersonDetailViewSet)
 router.register(r'signals', SignalViewSet)
+router.register(r'news', NewsViewSet)
+router.register(r'rules', RuleViewSet)
+router.register(r'questions', QuestionViewSet)
 
 
 urlpatterns = [

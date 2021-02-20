@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Signal
+from .models import Signal, New, Rule, Question
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -16,7 +16,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 # 	class Meta:
 # 		model = Person
 # 		fields = ['name', 'gender', 'phone']
-		
+
 
 # ###############################################################################
 
@@ -32,4 +32,22 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class SignalSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Signal
-		fields = ['name', 'image', 'description', 'type'] 
+		fields = ['name', 'image', 'description', 'type']
+
+
+
+class NewsSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = New
+		fields = ['pic', 'headline', 'priority']
+
+
+class RuleSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Rule
+		fields = ['related_to', 'offence', 'penalty', 'section']
+
+class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Question
+		fields = ['signal', 'option1', 'option2', 'option3', 'option4', 'correct_option']

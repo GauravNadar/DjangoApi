@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer, SignalSerializer
+from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer
 from django.contrib.auth.models import User, Group
-from .models import Signal
+from .models import Signal, New, Rule, Question
 
 from django.http import HttpResponse
 from django.core import serializers
@@ -24,7 +24,7 @@ class UserViewSet(viewsets.ModelViewSet, APIView):
 	#authentication_classes = [SessionAuthentication, BasicAuthentication]
 	permission_classes = [IsAuthenticated]
 
-	
+
 	queryset = User.objects.all().order_by('-date_joined')
 	serializer_class = UserSerializer
 
@@ -64,5 +64,23 @@ class UserViewSet(viewsets.ModelViewSet, APIView):
 
 
 class SignalViewSet(viewsets.ModelViewSet):
-	queryset = Signal.objects.all()
-	serializer_class = SignalSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = Signal.objects.all()
+    serializer_class = SignalSerializer
+
+
+class NewsViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = New.objects.all()
+    serializer_class = NewsSerializer
+
+
+class RuleViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Rule.objects.all()
+    serializer_class = RuleSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
