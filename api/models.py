@@ -95,4 +95,12 @@ class Question(models.Model):
     def __str__(self):
         return str(self.id)
 
+class PetrolPrice(models.Model):
+    state =  models.CharField(max_length=100)
+    city =  models.CharField(max_length=100)
+    today_price = models.CharField(max_length=100)
+    yesterday_price =  models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{state} - {city}".format(state=self.state, city=self.city)
 

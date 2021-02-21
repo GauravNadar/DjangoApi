@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer
+from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer, PetrolPricesSerializer
 from django.contrib.auth.models import User, Group
-from .models import Signal, New, Rule, Question
+from .models import Signal, New, Rule, Question, PetrolPrice
 
 from django.http import HttpResponse
 from django.core import serializers
@@ -84,3 +84,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
+class PetrolPricesViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = PetrolPrice.objects.all()
+    serializer_class = PetrolPricesSerializer

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Signal, New, Rule, Question
+from .models import Signal, New, Rule, Question, PetrolPrice
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -51,3 +51,8 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Question
 		fields = ['signal', 'option1', 'option2', 'option3', 'option4', 'correct_option']
+
+class PetrolPricesSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = PetrolPrice
+		fields = ['state', 'city', 'today_price', 'yesterday_price']
