@@ -19,6 +19,7 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND,
     HTTP_200_OK
 )
+from django.views.decorators.csrf import csrf_exempt
 
 class UserViewSet(viewsets.ModelViewSet, APIView):
 	#authentication_classes = [SessionAuthentication, BasicAuthentication]
@@ -89,3 +90,19 @@ class PetrolPricesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = PetrolPrice.objects.all()
     serializer_class = PetrolPricesSerializer
+
+from django.http import HttpResponse, JsonResponse
+from django.views.generic.base import View
+
+class WebHookView(View):
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, data):
+        import json
+        result = json.loads(self.request.body)
+        print(result)
+
+        return JsonResponse(result)
