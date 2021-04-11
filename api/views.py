@@ -103,6 +103,46 @@ class WebHookView(View):
     def post(self, data):
         import json
         result = json.loads(self.request.body)
+
+        fake_result = {
+				  "Gujarat": [
+				    [
+				      "City",
+				      "Today Price",
+				      "Yesterday Price"
+				    ],
+				    [
+				      "Ahmedabad",
+				      "₹ 87.76",
+				      "₹ 87.72"
+				    ],
+				    [
+				      "Amreli",
+				      "₹ 89.02",
+				      "₹ 89.02"
+				    ],
+				    [
+				      "Anand",
+				      "₹ 87.58",
+				      "₹ 87.56"
+				    ],
+				    [
+				      "Aravalli",
+				      "₹ 88.50",
+				      "₹ 88.36"
+				    ]
+				  ]
+				}
+
+        for key, values in result.items():
+            state = key
+            values.pop(0)
+            for val in values:
+                PetrolPrice.objects.create(state=state,
+                                           city=val[0],
+                                           today_price=val[1],
+                                           yesterday_price=val[2])
+
         print(result)
 
         return JsonResponse(result)

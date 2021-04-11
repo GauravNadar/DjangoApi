@@ -8,4 +8,8 @@ admin.site.register(Signal)
 admin.site.register(New)
 admin.site.register(Rule)
 admin.site.register(Question)
-admin.site.register(PetrolPrice)
+
+class PetrolPriceAdmin(admin.ModelAdmin):
+    list_display = ['state', 'city', 'today_price', 'yesterday_price']
+    
+admin.site.register(PetrolPrice, PetrolPriceAdmin)

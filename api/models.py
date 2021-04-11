@@ -100,6 +100,7 @@ class PetrolPrice(models.Model):
     city =  models.CharField(max_length=100)
     today_price = models.CharField(max_length=100)
     yesterday_price =  models.CharField(max_length=100)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "{state} - {city}".format(state=self.state, city=self.city)
