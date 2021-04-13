@@ -10,6 +10,6 @@ admin.site.register(Rule)
 admin.site.register(Question)
 
 class PetrolPriceAdmin(admin.ModelAdmin):
-    list_display = ['state', 'city', 'today_price', 'yesterday_price']
+    list_display = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on']
     
 admin.site.register(PetrolPrice, PetrolPriceAdmin)
