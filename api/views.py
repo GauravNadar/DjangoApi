@@ -149,7 +149,13 @@ class WebHookView(View):
             state = key
             values.pop(0)
             for val in values:
-                PetrolPrice.objects.create(state=state,
+                p = PetrolPrice.objects.filter(state=state, city=val[0])
+                if p:
+                    p[0].today_price = val[1]
+                    p[0].yesterday_price = val[2]
+                    p.save()
+                else:
+                    PetrolPrice.objects.create(state=state,
                                            city=val[0],
                                            today_price=val[1],
                                            yesterday_price=val[2])
