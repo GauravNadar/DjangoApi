@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer, PetrolPricesSerializer
 from django.contrib.auth.models import User, Group
 from .models import Signal, New, Rule, Question, PetrolPrice
@@ -90,6 +90,17 @@ class PetrolPricesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = PetrolPrice.objects.all()
     serializer_class = PetrolPricesSerializer
+
+class UserList(generics.ListAPIView):
+    queryset = PetrolPrice.objects.all()
+    serializer_class = PetrolPricesSerializer
+
+    def list(self, request, id):
+        states = ['Andaman & Nicobar','Andhra Pradesh','Arunachal Pradesh', 'Assam','Bihar', 'Chandigarh','Chhatisgarh', 'Dadra Nagarhaveli','Daman & Diu', 'Delhi','Goa', 'Gujarat','Haryana', 'Himachal Pradesh','Jammu & Kashmir', 'Jharkhand','Karnataka', 'Kerala','Madhya Pradesh', 'Maharashtra','Manipur','Meghalaya','Mizoram', 'Nagaland','Odisha', 'Pondicherry','Punjab', 'Rajasthan','Sikkim', 'Tamil Nadu','Telangana', 'Tripura','Uttar Pradesh', 'Uttarakhand','West Bengal']
+        queryset = self.get_queryset().filter(state = states[id])
+        serializer = PetrolPricesSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 from django.http import HttpResponse, JsonResponse
 from django.views.generic.base import View

@@ -33,9 +33,10 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+	'corsheaders',
+	'api',
     'rest_framework.authtoken',
     'rest_framework',
-    'api',
     'cloudinary',
 
     'django.contrib.admin',
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+	'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,7 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rapidapipractice.wsgi.application'
 
-
+CORS_ORIGIN_ALLOW_ALL=True
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 

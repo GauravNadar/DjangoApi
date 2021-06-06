@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, WebHookView
+from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, \
+	WebHookView, UserList
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
@@ -47,6 +48,8 @@ urlpatterns = [
 
     #path('token-example/', TokenExample, name='token-example'),
     path('webhook/', WebHookView.as_view(), name='webhook'),
+	
+	path('list/<int:id>', UserList.as_view(), name='user-list')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
