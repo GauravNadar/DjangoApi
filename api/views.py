@@ -153,7 +153,7 @@ class WebHookView(View):
                 if p:
                     p[0].today_price = val[1]
                     p[0].yesterday_price = val[2]
-                    p.save()
+                    p[0].save()
                 else:
                     PetrolPrice.objects.create(state=state,
                                            city=val[0],
