@@ -1,4 +1,7 @@
+
+
 from django.shortcuts import render
+from django.utils import timezone
 from rest_framework import viewsets, generics
 from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer, PetrolPricesSerializer
 from django.contrib.auth.models import User, Group
@@ -113,6 +116,7 @@ class WebHookView(View):
 
     def post(self, data):
         import json
+        
         result = json.loads(self.request.body)
 
         fake_result = {
@@ -120,7 +124,7 @@ class WebHookView(View):
 				    [
 				      "City",
 				      "Today Price",
-				      "Yesterday Price"
+				      "Yesterday Price",
 				    ],
 				    [
 				      "Ahmedabad",
@@ -144,21 +148,43 @@ class WebHookView(View):
 				    ]
 				  ]
 				}
+        if self.request.environ['HTTP_FUEL'] == "petrol":
 
-        for key, values in result.items():
-            state = key
-            values.pop(0)
-            for val in values:
-                p = PetrolPrice.objects.filter(state=state, city=val[0])
-                if p:
-                    p[0].today_price = val[1]
-                    p[0].yesterday_price = val[2]
-                    p[0].save()
-                else:
-                    PetrolPrice.objects.create(state=state,
-                                           city=val[0],
-                                           today_price=val[1],
-                                           yesterday_price=val[2])
+            for key, values in result.items():
+                state = key
+                values.pop(0)
+                for val in values:
+                    p = PetrolPrice.objects.filter(state=state, city=val[0])
+                    if p:
+                        p[0].today_price = val[1]
+                        p[0].yesterday_price = val[2]
+                        p[0].updated_on = timezone.now()
+                        p[0].save()
+                    else:
+                        PetrolPrice.objects.create(state=state,
+                                               city=val[0],
+                                               today_price=val[1],
+                                               yesterday_price=val[2],
+                                               updated_on=timezone.now())
+                        
+        else:
+            
+            for key, values in result.items():
+                state = key
+                values.pop(0)
+                for val in values:
+                    p = PetrolPrice.objects.filter(state=state, city=val[0])
+                    if p:
+                        p[0].diesel_today_price = val[1]
+                        p[0].diesel_yesterday_price = val[2]
+                        p[0].diesel_updated_on = timezone.now()
+                        p[0].save()
+                    else:
+                        PetrolPrice.objects.create(state=state,
+                                               city=val[0],
+                                               diesel_today_price=val[1],
+                                               diesel_yesterday_price=val[2],
+                                                   diesel_updated_on=timezone.now())
 
         print(result)
 

@@ -194,36 +194,63 @@
             "    <tr>\n" +
             "    <td>"+index+"</td>\n" +
             "    <td>"+value+"</td>\n" +
-            "    <td> <input id="+index+" class=\"not_done\" type=\"submit\" value=\"Scrape\" onclick=\"callScrapper("+index+")\"></td>\n" +
+            "    <td> <input id="+index+" class=\"not_done\" type=\"submit\" value=\"Scrape Petrol\" onclick=\"callScrapper("+index+","+1+")\"></td>\n" +
             "        <td style=\"height: 2px; width: 2px;\"><img id=id"+index+" src=\"{% static "icons/cross_30.png" %}\" alt=\"Tick\"/></td>\n" +
+            "    <td> <input id="+"diesel"+index+" class=\"dieselnot_done\" type=\"submit\" value=\"Scrape Diesel\" onclick=\"callScrapper("+index+","+2+")\"></td>\n" +
+            "        <td style=\"height: 2px; width: 2px;\"><img id=id"+"diesel"+index+" src=\"{% static "icons/cross_30.png" %}\" alt=\"Tick\"/></td>\n" +
             "  </tr>"
     }
 
 
-    function callScrapper(id){
-        document.getElementById("id"+id).src = '{% static "icons/loading_updated.gif" %}';
+    function callScrapper(id, fuel){
+        console.log(fuel);
+
+        if(fuel===1){
+            fuel_code=1;
+            tag = "";
+        }
+        else{
+            fuel_code=2;
+            tag = "diesel";
+        }
+
+        document.getElementById("id"+tag+id).src = '{% static "icons/loading_updated.gif" %}';
         b = document.getElementsByClassName("not_done");
+        x = document.getElementsByClassName("dieselnot_done");
         for (i = 0; i < b.length; i++){
 
             b[i].disabled = true;
         }
 
+        for (j = 0; j < x.length; j++){
+                             x[j].disabled = true;
+                        }
+
         console.log(id);
-        document.getElementById(id).disabled = true;
+        document.getElementById(tag+id).disabled = true;
         {#setTimeout(function(){ document.getElementById(id).disabled = false;}, 3000);#}
 
         url = 'https://gaurav-api-practice.herokuapp.com/call-scrapper/'+id+'/';
+        {#url = 'http://127.0.0.1:8080/call-scrapper/'+id+'/';#}
         {#window.location = url#}
 
+
+
+        console.log("before ajax");
         $.ajax({url: url,
+                data: { "fuel_code": fuel_code},
             success: function(result){
                 console.log(result.result);
-                document.getElementById("id"+id).src = '{% static "icons/tick_30.png" %}';
-                document.getElementById(id).className = "done";
+                document.getElementById("id"+tag+id).src = '{% static "icons/tick_30.png" %}';
+                document.getElementById(tag+id).className = "done";
                 c = document.getElementsByClassName("not_done");
+                y = document.getElementsByClassName("dieselnot_done");
                 for (i = 0; i < c.length; i++){
-
                              c[i].disabled = false;
+                        }
+
+                for (j = 0; j < y.length; j++){
+                             y[j].disabled = false;
                         }
 
             }});

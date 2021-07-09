@@ -53,6 +53,15 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ['signal', 'option1', 'option2', 'option3', 'option4', 'correct_option']
 
 class PetrolPricesSerializer(serializers.HyperlinkedModelSerializer):
+
+	def to_representation(self, instance):
+		
+		"""make `time` without seconds"""
+		field = super().to_representation(instance)
+		field['updated_on'] = instance.updated_on.strftime('%Y-%m-%d %H:%M') if instance.updated_on else None
+		field['diesel_updated_on'] = instance.diesel_updated_on.strftime('%Y-%m-%d %H:%M') if instance.diesel_updated_on else None
+		return field
+    
 	class Meta:
 		model = PetrolPrice
-		fields = ['state', 'city', 'today_price', 'yesterday_price']
+		fields = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on', 'diesel_today_price', 'diesel_yesterday_price', 'diesel_updated_on']

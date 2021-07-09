@@ -27,6 +27,6 @@ class PetrolPriceAdmin(admin.ModelAdmin):
 		return render(request, 'api/progress.html')
 	
 	change_list_template = 'api/change_list.html'
-	list_display = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on']
+	list_display = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on', 'diesel_today_price', 'diesel_yesterday_price', 'diesel_updated_on']
 
 admin.site.register(PetrolPrice, PetrolPriceAdmin)

@@ -98,9 +98,12 @@ class Question(models.Model):
 class PetrolPrice(models.Model):
     state =  models.CharField(max_length=100)
     city =  models.CharField(max_length=100)
-    today_price = models.CharField(max_length=100)
-    yesterday_price =  models.CharField(max_length=100)
-    updated_on = models.DateTimeField(auto_now=True)
+    today_price = models.CharField(max_length=100, null=True)
+    yesterday_price =  models.CharField(max_length=100, null=True)
+    updated_on = models.DateTimeField(null=True)
+    diesel_today_price = models.CharField(max_length=100, null=True)
+    diesel_yesterday_price = models.CharField(max_length=100, null=True)
+    diesel_updated_on = models.DateTimeField(null=True)
 
     def __str__(self):
         return "{state} - {city}".format(state=self.state, city=self.city)
