@@ -37,7 +37,7 @@ router.register(r'petrol-prices', PetrolPricesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PrivacyPolicyView.as_view(), name='privacy'),
+    path('', include(router.urls)),
     path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
     #path('test/', TestView, name='test'),
 
