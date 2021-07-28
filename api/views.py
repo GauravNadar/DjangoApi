@@ -106,7 +106,8 @@ class UserList(generics.ListAPIView):
 
 
 from django.http import HttpResponse, JsonResponse
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
+
 
 class WebHookView(View):
 
@@ -189,3 +190,6 @@ class WebHookView(View):
         print(result)
 
         return JsonResponse(result)
+    
+class PrivacyPolicyView(TemplateView):
+    template_name = 'api/privacy_policy.html'
