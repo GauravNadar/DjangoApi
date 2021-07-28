@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, \
-	WebHookView, UserList, PrivacyPolicyView
+from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, WebHookView, UserList, PrivacyPolicyView
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
