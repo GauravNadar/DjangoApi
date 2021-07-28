@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, \
-	WebHookView, UserList
+	WebHookView, UserList, PrivacyPolicyView
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
@@ -38,7 +38,7 @@ router.register(r'petrol-prices', PetrolPricesViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('', PrivacyPolicyView.as_view(), name='privacy'),
     path('api_auth/', include('rest_framework.urls', namespace='rest_framework')),
     #path('test/', TestView, name='test'),
 
