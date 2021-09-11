@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path
 
-from .models import Signal, TestModel, New, Rule, Question, PetrolPrice
+from .models import Signal, TestModel, New, Rule, Question, PetrolPrice, Quiz, MaintenanceActivity
 
 #admin.site.register(Person)
 admin.site.register(Signal)
@@ -30,3 +30,6 @@ class PetrolPriceAdmin(admin.ModelAdmin):
 	list_display = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on', 'diesel_today_price', 'diesel_yesterday_price', 'diesel_updated_on']
 
 admin.site.register(PetrolPrice, PetrolPriceAdmin)
+
+admin.site.register(Quiz)
+admin.site.register(MaintenanceActivity)

@@ -84,6 +84,18 @@ CORRECT_ANSWER_CHOICES = [
             ('4', 'option 4')
     ]
 
+QUIZ_CORRECT_CHOICES = [
+            ('1', 'option 1'),
+            ('2', 'option 2'),
+            ('3', 'option 3')
+    ]
+
+MAINTENANCE_PRIORITY_CHOICES = [
+            ('1', 'High'),
+            ('2', 'Medium'),
+            ('3', 'Low')
+    ]
+
 class Question(models.Model):
     signal = models.ImageField(upload_to='question_signals/')
     option1 = models.CharField(max_length=500)
@@ -107,4 +119,24 @@ class PetrolPrice(models.Model):
 
     def __str__(self):
         return "{state} - {city}".format(state=self.state, city=self.city)
+    
+class Quiz(models.Model):
+    question = models.CharField(max_length=1000)
+    option1 = models.CharField(max_length=500)
+    option2 = models.CharField(max_length=500, default='null')
+    option3 = models.CharField(max_length=500, default='null')
+    correct_option = models.CharField(choices=QUIZ_CORRECT_CHOICES, max_length=100)
+
+    def __str__(self):
+        return str(self.id)
+    
+class MaintenanceActivity(models.Model):
+    priority = models.CharField(choices=MAINTENANCE_PRIORITY_CHOICES, max_length=100)
+    active = models.BooleanField(default=False)
+    title = models.CharField(max_length=500)
+    message = models.TextField()
+    app_update_required = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.title
 
