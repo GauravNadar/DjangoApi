@@ -3,9 +3,10 @@
 from django.shortcuts import render
 from django.utils import timezone
 from rest_framework import viewsets, generics
-from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer, PetrolPricesSerializer
+from .serializers import UserSerializer, SignalSerializer, NewsSerializer, RuleSerializer, QuestionSerializer, \
+	PetrolPricesSerializer, MaintenanceSerializer
 from django.contrib.auth.models import User, Group
-from .models import Signal, New, Rule, Question, PetrolPrice
+from .models import Signal, New, Rule, Question, PetrolPrice, MaintenanceActivity
 
 from django.http import HttpResponse
 from django.core import serializers
@@ -190,6 +191,11 @@ class WebHookView(View):
         print(result)
 
         return JsonResponse(result)
+    
+class MaintenanceViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = MaintenanceActivity.objects.filter(active=True)
+    serializer_class = MaintenanceSerializer
     
 class PrivacyPolicyView(TemplateView):
     template_name = 'api/privacy_policy.html'

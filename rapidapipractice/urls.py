@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, WebHookView, UserList, PrivacyPolicyView
+from api.views import UserViewSet, SignalViewSet, NewsViewSet, RuleViewSet, QuestionViewSet, PetrolPricesViewSet, WebHookView, UserList, PrivacyPolicyView, MaintenanceViewSet
 from rest_framework.authtoken import views as rest_auth_view
 
 from django.conf.urls.static import static
@@ -33,7 +33,7 @@ router.register(r'news', NewsViewSet)
 router.register(r'rules', RuleViewSet)
 router.register(r'questions', QuestionViewSet)
 router.register(r'petrol-prices', PetrolPricesViewSet)
-
+router.register(r'maintenance-activity', MaintenanceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

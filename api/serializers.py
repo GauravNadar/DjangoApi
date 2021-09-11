@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Signal, New, Rule, Question, PetrolPrice
+from .models import Signal, New, Rule, Question, PetrolPrice, MaintenanceActivity
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -65,3 +66,8 @@ class PetrolPricesSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = PetrolPrice
 		fields = ['state', 'city', 'today_price', 'yesterday_price', 'updated_on', 'diesel_today_price', 'diesel_yesterday_price', 'diesel_updated_on']
+		
+class MaintenanceSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = MaintenanceActivity
+		fields = '__all__'
