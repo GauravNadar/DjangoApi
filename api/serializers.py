@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Signal, New, Rule, Question, PetrolPrice, MaintenanceActivity
+from .models import Signal, New, Rule, Question, PetrolPrice, MaintenanceActivity, Quiz
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -70,4 +70,9 @@ class PetrolPricesSerializer(serializers.HyperlinkedModelSerializer):
 class MaintenanceSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = MaintenanceActivity
+		fields = '__all__'
+		
+class QuizSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Quiz
 		fields = '__all__'
